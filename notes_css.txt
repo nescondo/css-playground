@@ -1,0 +1,122 @@
+3/6/25
+Lesson 1 - what is CSS, external/internal/in-line style sheets, CSS rule anatomy, w3 markup validation
+-----------------------
+CSS (Cascading Style Sheets) - a stylesheet language used to describe the presentation of a document written in HTML or XML
+	- what does 'cascade' mean in CSS?
+		1. works/is read from the top down - whatever is read last will be applied
+		2. specificity can override this - where id and classes come into play (more specific) than an element selector
+
+HTML vs. CSS:
+	- HTML is the foundation/structure
+	- CSS is the paint, carpet, wallpaper - how elements should appear (what it looks like)
+
+External style sheets: CSS files located outside of the html file (best way - most common)
+	1. used in <head> by:
+		- <link rel="stylesheet" href="css/style.css"> -> this links our style.css style sheet to our webpage
+
+Internal style sheets: CSS located inside of the html file
+	1. used by the element: <style>whatever_modifications_you_want</style>
+	2. no difference in order - it is just dependant on the order which they are read
+		- if external is written beforehand, it will read and apply that first
+		- if internal is written afterward, any of the same modifications will be overwritten from the external
+
+In-line CSS: using style as an attribute (ie. <p style="color:blue">I'm learning CSS!</p>) - try to avoid this at all times
+	1. used by using the style attribute
+		- <p style="color:blue">I'm learning CSS!</p>
+	2. avoid using this
+
+Anatomy of a CSS ruleset (or rule):
+	
+	p {
+		color: red;
+	}
+	
+	- p represents a selector
+	- color represents a property
+	- red represents the property value
+	- color: red; represents a declaration
+	- the whole structure represents the ruleset or rule
+
+**MUST use en-US dialect (color instead of colour) - no errors will be thrown, will just be ignored**
+
+
+Detecting issues in CSS file: 
+	- use CSS validation service by w3c - https://jigsaw.w3.org/css-validator/
+
+Lesson 2 - Selectors
+---------------------
+4 most common levels of selectors:
+	1. element selectors: selects ALL elements of that type; elements can inherit modifications from certain elements (like the body)
+		- body: modifies the body element (one per page)
+		- p: modifies the p (paragraph, <p>) element
+		- least specific
+	2. class selectors: selects ALL elements with the attribute class="name_of_class"; starts with a . (period) before the name of the class
+		- more specific - will overwrite element selectors
+		- ex: .gray {
+					color: gray;
+			  }
+		- more specific than element selector
+	3. id selectors: selects ALL elements with id attribute id="name_of_id"; starts with a # (hashtag) before name of the class
+		- try not to use these within CSS - more useful in JS or certain situations
+		- ex: #second {
+					  font-style: italic;
+			  }
+		- more specific (most specific) than class selectors
+	4. universal selector: selects everything on the page; labelled with * (asterisk) only
+		- not as common, typically only seen in a "CSS reset"
+		- ex: * {
+					font-family: monospace;
+			}	
+
+how to group selectors: use a , (comma)
+	1. h1, h2 {
+				color: blue;
+			}
+
+how to modify an element inside another element: use a selector and an element attached with that item OR create a class selector
+and take each type of element and add the class attribute to it (preferred method)
+	- 1st example: p span {
+							text-transform: uppercase;
+							background-color: gold;
+						}
+	- 2nd example (preferred): .highlight {
+											text-transform: uppercase;
+											background-color: gold;	
+										}
+problem solving - why CSS is not applying certain modifications (due to specificity/cascading)
+	1. inspect your webpage (on Google, IE, etc.) using dev tools
+	2. hover over specific element you are modifying to see how CSS is cascading/reading it
+
+inheritance - another element inherits the settings/properties from it's parent element
+	- body element is parent to every element in the body - which causes inheritance of properties in children
+	- common element selectors to utilize inheritance with:
+		1. html
+		2. main
+			- remember, this is only used once and is a semantic element
+
+properties that can be inherited usually involve font or typography - here are things that involve the those two typically:
+	1. color
+	2. line height
+	3. alignment
+	4. etc.
+
+**NOTE: properties NOT related to font or typography are NOT inherited**
+	- ex: border: 3px solid black; - this will NOT be inherited to each child
+	- ex: form elements do not typically inherit such as font
+			- can manually do it though:
+				button, input, textarea, select {
+					font: inherit;
+				}
+
+**ALSO NOTE: universal selector is NOT inheritance - we select ALL elements using this**
+	- ex: border: 3px solid black; - each element will be selected to have this modification
+
+the !important flag: only use this when you have no other choice; avoid!!!
+	- TRY TO AVOID!
+	- overrides everything else
+	- ex: p {
+				color: purple!important;
+		}
+
+specificity calculator: visual way to see the specificity of each element, class, or id
+	- https://specificity.keegan.st/
