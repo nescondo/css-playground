@@ -120,3 +120,99 @@ the !important flag: only use this when you have no other choice; avoid!!!
 
 specificity calculator: visual way to see the specificity of each element, class, or id
 	- https://specificity.keegan.st/
+
+Lesson 3: Colors
+------------------
+Setting a background color - our background color declaration:
+	1. background-color: color;
+	2. background: color; - shorthand; also allows us to set other properties besides color
+
+Setting a font color declaration:
+	1. color: color;
+
+Using RGB for colors:
+	ex: color: rgb(255,0,0) -> sets the font color to red
+	1. rgba(0,0,0,1)
+		- adds a transparency attribute
+		- ranges from 0-1:
+			- 1 = default, where there is no transparency
+			- 0 = 100% transparency
+			- 0.5 = 50% transparency
+			- etc.
+
+Using hexadecimal for colors:
+	1. first, what is hexadecimal?
+		- 16 digit number consisting of "#" (before the number), numbers 0-9, letters A-F
+	ex: color: #000000; (black); color: #FF0000; (red)
+			- first set of two digits = red
+			- second set of two digits = green
+			- third set of two digits = blue
+			- maxed value = FF
+	2. we can have a shorthand for hexadecimal colors if the color pattern PAIRS match:
+		ex: color: #FFF; is white -> color: #FFFFFF; is also white
+			color: #000; is black -> color: #000000l is also black
+			color: #F00; is red -> color: #FF0000; is also red
+	3. using an IDE, it shows hexadecimal when typing names
+		- in the color pattern, it shows hexadecimal color values
+
+Modifying hue, saturation, and lightness:
+	1. hsl declaration (hue, saturation, lightness)
+		ex: hsl(224,73%,49%) - 0 hue, 100% saturation, 50% lightness; represents red
+
+Additional color tools for picking color palettes:
+	- coolors.co
+		1. has a color contrast checker to compare text colors with background colors - pretty cool
+
+Lesson 4: Units and Sizes
+-------------------------
+Absolute length units: most commonly used (look at MDN documentation)
+	1. pixels: px (1px = 1/96th of 1in)
+		- default is usually 16px for font
+
+What scenarios do we NOT want to use absolute values for size?
+	- font-size of a webpage; this is because there can be user settings that can change these fonts and if we have an absolute value
+	font-size for a webpage, we take away that option from the user
+
+When do we use absolute values for size then?
+	- modifications of sizes on webpage that don't cause user settings to be overwritten such as borders
+	ex. border: 2px dashed red;
+
+Percentages:
+	- modifies how big a modification is relative to its' parent
+	ex. header {
+			width: 50%;
+		} -> modifies the width of the elements within the header which is relative to size of the parent (header), which is now 50%
+
+		h1 {
+			border: 2px dashed red;
+			width: 50%;
+		} -> modifies the width of the elements in h1, which was 50% of the header element, which is now 25% of the h1 element (parent)
+
+Most common relative length units:
+	1. rem - font size of relative to root element; since 1rem is default (16px usually default font-size), 
+	   2rem doubles the default (so 2rem = 32px)
+		- 1rem is default
+		- don't set the font-size for the entire webpage, but can do it for other elements such as p
+		ex. p {
+				font-size: 2rem;
+			}
+	2. em - font size relative to the element itself
+		- use for margin/padding
+		- button margin/padding
+		ex. h1 {
+				font-size: 3rem;
+				padding: 0.5em;
+			} -> h1 element padding would be half of the font size, which is 1.5rem
+	3. ch - character
+		- use for defining how many characters on a line; helps define columns
+		ex. p {
+				font-size: 2rem;
+				width: 40ch;
+			} -> maximum of 40ch before a line wraps
+	4. vw, vh - viewport width, viewport height
+		- when vertical content outgrows the page, a horizontal scroll bar will appear alongside the vertical scroll bar which DOES NOT
+		account for the scroll bar appearing - use percentages to fix this when setting width (100%); this should be the default, though
+			- can also set min-height: 100vh; to set the viewport height to the whole page, preventing vertical content from outgrowing
+			the viewport
+
+Developer tools on browser (inspect element) can show you the spaces for margins, padding, etc. as well as default styles/sizes
