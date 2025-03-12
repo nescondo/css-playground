@@ -189,7 +189,7 @@ Percentages:
 		} -> modifies the width of the elements in h1, which was 50% of the header element, which is now 25% of the h1 element (parent)
 
 Most common relative length units:
-	1. rem - font size of relative to root element; since 1rem is default (16px usually default font-size), 
+	1. rem - font size relative to root element; since 1rem is default (16px usually default font-size), 
 	   2rem doubles the default (so 2rem = 32px)
 		- 1rem is default
 		- don't set the font-size for the entire webpage, but can do it for other elements such as p
@@ -216,3 +216,45 @@ Most common relative length units:
 			the viewport
 
 Developer tools on browser (inspect element) can show you the spaces for margins, padding, etc. as well as default styles/sizes
+
+Lesson 5: Box Model
+--------------------
+Box model is located in your webpage via developer tools (inspect element) - check the 'Computed' tab
+	- specifically shows you the various sizes such as margins, padding, borders, etc. of the certain element you have selected
+	- good to use when you want to know exactly what size (in px/pixels) your elements are taking up on the webpage
+
+CSS reset: * {
+				margin: 0;
+				padding: 0;
+				box-sizing: content-box; -> default for ONLY size of the content, no calculations done besides this
+				box-sizing: border=box; -> calculates padding and border to the calculation (use this - makes your life easier)
+			}
+
+	1. the * (wildcard) selects all elements
+
+What are CSS resets good for?
+	- when having trouble keeping track of sizes, use a CSS reset
+
+Margin, padding, border, etc? can be changed to only affect top, right, bottom, left:
+	ex: margin-top: 1.5em; -> only affects top of the margin
+
+	- short-hand: margin: 1.5em 2em 2em; (1.5em top and left, 2em right, 2em bottom)
+	- use dev tools to help visualize (using box model, remember, select the element you want to view)
+	- can interchange with what we are specifying:
+		1. border-top: 5px dotted blue; -> this specifies pixel size, line type, and color
+			- border-top-width: 5px; -> only specifies pixel size
+			- border-top-style: solid; -> only specifies line type
+		2. overall, many settings we can individually specify
+
+CSS comments: /* */ or shift-alt-a
+
+outline property: outlines outside border with a border itself
+	ex. outline: 5px solid purple;
+	- is not calculated in box model equation
+	- outline-offset: 5px; -> can offset a certain amount of pixels for where the outline is
+		1. can do outline-offset: -20px; -> offsets the outline to go INSIDE the 'container'
+
+Centering margin left and right ONLY (does not work for top and bottom):
+	- margin: 3rem auto;
+
+Using border-radius will halve our width and height of our CORNERS - useful for rounding corners of a class aka making a circle
